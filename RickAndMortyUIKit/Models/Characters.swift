@@ -1,4 +1,4 @@
-public struct RMCharacterModel: Codable, Identifiable {
+public struct RMCharacterModel: nonisolated Codable, Identifiable {
     public let id: Int
     public let name: String
     public let status: String
@@ -26,10 +26,12 @@ public struct RMCharacterLocationModel: Codable {
 struct RMCharacterInfoModel: Codable {
     let info: Info
     let results: [RMCharacterModel]
+    
+    struct Info: Codable {
+        let count: Int
+        let pages: Int
+        let next: String?
+        let prev: String?
+    }
 }
-struct Info: Codable {
-    let count: Int
-    let pages: Int
-    let next: String?
-    let prev: String?
-}
+
